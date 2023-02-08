@@ -1,0 +1,58 @@
+plugins {
+    id 'org.springframework.boot' version '3.0.0'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+}
+
+group = 'com.wordscore.engine'
+version = '0.0.1'
+sourceCompatibility = '17'
+
+ext {
+    set('springCloudVersion', "2022.0.0")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    implementation 'org.hibernate.validator:hibernate-validator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'org.quartz-scheduler:quartz:2.3.2'
+    implementation 'org.springframework:spring-context-support:5.3.23'
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'org.json:json:20220924'
+    implementation 'com.szadowsz:datamuse4j:0.2.0'
+    implementation 'com.maximeroussy.invitrode:invitrode:2.0.2'
+    implementation 'com.github.dhiraj072:random-word-generator:1.1.0'
+    implementation 'org.apache.commons:commons-csv:1.9.0'
+
+    implementation 'com.opencsv:opencsv:5.7.1'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
